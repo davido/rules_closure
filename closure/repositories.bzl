@@ -33,11 +33,14 @@ def closure_repositories(
     omit_com_google_dagger=False,
     omit_com_google_dagger_compiler=False,
     omit_com_google_dagger_producers=False,
+    omit_com_google_dagger_spi=False,
     omit_com_google_errorprone_error_prone_annotations=False,
+    omit_com_google_errorprone_javac_shaded=False,
     omit_com_google_guava=False,
     omit_com_google_inject_extensions_guice_assistedinject=False,
     omit_com_google_inject_extensions_guice_multibindings=False,
     omit_com_google_inject_guice=False,
+    omit_com_google_javaformat=False,
     omit_com_google_javascript_closure_compiler=False,
     omit_com_google_javascript_closure_library=False,
     omit_com_google_javascript_incremental_dom=False,
@@ -48,6 +51,7 @@ def closure_repositories(
     omit_com_google_template_soy=False,
     omit_com_google_template_soy_jssrc=False,
     omit_com_ibm_icu_icu4j=False,
+    omit_com_squareup_javapoet=False,
     omit_com_squareup_javawriter=False,
     omit_fonts_noto_hinted_deb=False,
     omit_fonts_noto_mono_deb=False,
@@ -96,8 +100,12 @@ def closure_repositories(
     com_google_dagger_compiler()
   if not omit_com_google_dagger_producers:
     com_google_dagger_producers()
+  if not omit_com_google_dagger_spi:
+    com_google_dagger_spi()
   if not omit_com_google_errorprone_error_prone_annotations:
     com_google_errorprone_error_prone_annotations()
+  if not omit_com_google_errorprone_javac_shaded:
+    com_google_errorprone_javac_shaded()
   if not omit_com_google_guava:
     com_google_guava()
   if not omit_com_google_inject_extensions_guice_assistedinject:
@@ -106,6 +114,8 @@ def closure_repositories(
     com_google_inject_extensions_guice_multibindings()
   if not omit_com_google_inject_guice:
     com_google_inject_guice()
+  if not omit_com_google_javaformat:
+    com_google_javaformat()
   if not omit_com_google_javascript_closure_compiler:
     com_google_javascript_closure_compiler()
   if not omit_com_google_javascript_closure_library:
@@ -124,6 +134,8 @@ def closure_repositories(
     com_google_template_soy_jssrc()
   if not omit_com_ibm_icu_icu4j:
     com_ibm_icu_icu4j()
+  if not omit_com_squareup_javapoet:
+    com_squareup_javapoet()
   if not omit_com_squareup_javawriter:
     com_squareup_javawriter()
   if not omit_fonts_noto_hinted_deb:
@@ -393,13 +405,15 @@ def com_google_common_html_types_html_proto():
 def com_google_dagger():
   java_import_external(
       name = "com_google_dagger",
-      jar_sha256 = "8b7806518bed270950002158934fbd8281725ee09909442f2f22b58520b667a7",
+      jar_sha256 = "374cfee26c9c93f44caa1946583c9edc135bb9a42838476522551ec46aa55c7c",
       jar_urls = [
-          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger/2.9/dagger-2.9.jar",
-          "https://repo1.maven.org/maven2/com/google/dagger/dagger/2.9/dagger-2.9.jar",
+          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger/2.14.1/dagger-2.14.1.jar",
+          "https://repo1.maven.org/maven2/com/google/dagger/dagger/2.14.1/dagger-2.14.1.jar",
       ],
       licenses = ["notice"],  # Apache 2.0
-      deps = ["@javax_inject"],
+      deps = [
+        "@javax_inject",
+      ],
       generated_rule_name = "runtime",
       extra_build_file_content = "\n".join([
           "java_library(",
@@ -416,17 +430,20 @@ def com_google_dagger():
 def com_google_dagger_compiler():
   java_import_external(
       name = "com_google_dagger_compiler",
-      jar_sha256 = "afe356def27710db5b60cad8e7a6c06510dc3d3b854f30397749cbf0d0e71315",
+      jar_sha256 = "ff16d55273e375349537fc82292b00de04d8a2caca2d4aa6c642692b1a68194d",
       jar_urls = [
-          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger-compiler/2.9/dagger-compiler-2.9.jar",
-          "https://repo1.maven.org/maven2/com/google/dagger/dagger-compiler/2.9/dagger-compiler-2.9.jar",
+          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger-compiler/2.14.1/dagger-compiler-2.14.1.jar",
+          "https://repo1.maven.org/maven2/com/google/dagger/dagger-compiler/2.14.1/dagger-compiler-2.14.1.jar",
       ],
       licenses = ["notice"],  # Apache 2.0
       deps = [
+          "@com_google_dagger_spi",
           "@com_google_code_findbugs_jsr305",
           "@com_google_dagger//:runtime",
           "@com_google_dagger_producers//:runtime",
           "@com_google_guava",
+          "@com_google_javaformat",
+          "@com_squareup_javapoet",
       ],
       extra_build_file_content = "\n".join([
           "java_plugin(",
@@ -446,10 +463,10 @@ def com_google_dagger_compiler():
 def com_google_dagger_producers():
   java_import_external(
       name = "com_google_dagger_producers",
-      jar_sha256 = "b452dc1b95dd02f6272e97b15d1bd35d92b5f484a7d69bb73887b6c6699d8843",
+      jar_sha256 = "96f950bc4b94d013b0c538632a4bc630f33eda8b01f63ae752b76c5e48783859",
       jar_urls = [
-          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger-producers/2.9/dagger-producers-2.9.jar",
-          "https://repo1.maven.org/maven2/com/google/dagger/dagger-producers/2.9/dagger-producers-2.9.jar",
+          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger-producers/2.14.1/dagger-producers-2.14.1.jar",
+          "https://repo1.maven.org/maven2/com/google/dagger/dagger-producers/2.14.1/dagger-producers-2.14.1.jar",
       ],
       licenses = ["notice"],  # Apache 2.0
       deps = [
@@ -470,6 +487,17 @@ def com_google_dagger_producers():
       ]),
   )
 
+def com_google_dagger_spi():
+  java_import_external(
+      name = "com_google_dagger_spi",
+      jar_sha256 = "6a20d6c6620fefe50747e9e910e0d0c178cf39d76b67ccffb505ac9a167302cb",
+      jar_urls = [
+          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger-spi/2.14.1/dagger-spi-2.14.1.jar",
+          "https://repo1.maven.org/maven2/com/google/dagger/dagger-spi/2.14.1/dagger-spi-2.14.1.jar",
+      ],
+      licenses = ["notice"],  # Apache 2.0
+  )
+
 def com_google_errorprone_error_prone_annotations():
   java_import_external(
       name = "com_google_errorprone_error_prone_annotations",
@@ -481,15 +509,27 @@ def com_google_errorprone_error_prone_annotations():
       ],
   )
 
+def com_google_errorprone_javac_shaded():
+  java_import_external(
+      name = "com_google_errorprone_javac_shaded",
+      licenses = ["notice"],  # Apache 2.0
+      jar_urls = [
+          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/errorprone/javac-shaded/9-dev-r4023-3/javac-shaded-9-dev-r4023-3.jar",
+          "https://repo1.maven.org/maven2/com/google/errorprone/javac-shaded/9-dev-r4023-3/javac-shaded-9-dev-r4023-3.jar",
+      ],
+      jar_sha256 = "65bfccf60986c47fbc17c9ebab0be626afc41741e0a6ec7109e0768817a36f30",
+  )
+
 def com_google_guava():
   java_import_external(
       name = "com_google_guava",
       licenses = ["notice"],  # Apache 2.0
       jar_urls = [
-          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0.jar",
-          "https://repo1.maven.org/maven2/com/google/guava/guava/21.0/guava-21.0.jar",
+          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/guava/guava/23.3-jre/guava-23.3-jre.jar",
+          "https://repo1.maven.org/maven2/com/google/guava/guava/23.3-jre/guava-23.3-jre.jar",
+          "http://maven.ibiblio.org/maven2/com/google/guava/guava/23.3-jre/guava-23.3-jre.jar",
       ],
-      jar_sha256 = "972139718abc8a4893fa78cba8cf7b2c903f35c97aaf44fa3031b0669948b480",
+      jar_sha256 = "4a87d5b1ca996e5e46a99594cf3566ae16885d0cf00b381b5e9f816a0e0125b3",
       exports = [
           "@com_google_code_findbugs_jsr305",
           "@com_google_errorprone_error_prone_annotations",
@@ -547,6 +587,21 @@ def com_google_inject_guice():
           "@com_google_code_findbugs_jsr305",
           "@javax_inject",
       ],
+  )
+
+def com_google_javaformat():
+  java_import_external(
+      name = "com_google_javaformat",
+      licenses = ["notice"],  # Apache 2.0
+      jar_sha256 = "aa19ad7850fb85178aa22f2fddb163b84d6ce4d0035872f30d4408195ca1144e",
+      jar_urls = [
+          "https://mirror.bazel.build/maven.ibiblio.org/maven2/com/google/googlejavaformat/google-java-format/1.5/google-java-format-1.5.jar",
+          "https://repo1.maven.org/maven2/com/google/googlejavaformat/google-java-format/1.5/google-java-format-1.5.jar",
+      ],
+      deps = [
+          "@com_google_errorprone_javac_shaded",
+          "@com_google_guava",
+      ]
   )
 
 def com_google_javascript_closure_compiler():
@@ -705,6 +760,16 @@ def com_ibm_icu_icu4j():
           "http://maven.ibiblio.org/maven2/com/ibm/icu/icu4j/57.1/icu4j-57.1.jar",
       ],
       jar_sha256 = "759d89ed2f8c6a6b627ab954be5913fbdc464f62254a513294e52260f28591ee",
+  )
+
+def com_squareup_javapoet():
+  java_import_external(
+      name = "com_squareup_javapoet",
+      jar_sha256 = "5bb5abdfe4366c15c0da3332c57d484e238bd48260d6f9d6acf2b08fdde1efea",
+      jar_urls = [
+          "https://repo1.maven.org/maven2/com/squareup/javapoet/1.9.0/javapoet-1.9.0.jar",
+      ],
+      licenses = ["notice"],  # Apache 2.0
   )
 
 def com_squareup_javawriter():
