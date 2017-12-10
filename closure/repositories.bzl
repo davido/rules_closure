@@ -487,10 +487,9 @@ def com_google_dagger():
 def com_google_dagger_compiler():
   java_import_external(
       name = "com_google_dagger_compiler",
-      jar_sha256 = "8b711253c9cbb58bd2c019cb38afb32ee79f283e1bb3030c8c85b645c7a6d25f",
+      jar_sha256 = "fa25de33d554140853faed875d0e06ca99ccda4c4c9ce59dfa8511348777e026",
       jar_urls = [
-          "https://mirror.bazel.build/repo1.maven.org/maven2/com/google/dagger/dagger-compiler/2.13/dagger-compiler-2.13.jar",
-          "https://repo1.maven.org/maven2/com/google/dagger/dagger-compiler/2.13/dagger-compiler-2.13.jar",
+          "https://github.com/davido/dagger/releases/download/dagger-2.14/dagger-compiler-2.14.jar",
       ],
       licenses = ["notice"],  # Apache 2.0
       deps = [
