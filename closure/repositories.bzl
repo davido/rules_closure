@@ -14,7 +14,7 @@
 
 """External dependencies for Closure Rules."""
 
-load("//closure/private:java_import_external.bzl", "java_import_external")
+load("@bazel_tools//tools/build_defs/repo:java.bzl", "java_import_external")
 load("//closure/private:platform_http_file.bzl", "platform_http_file")
 load("//closure:filegroup_external.bzl", "filegroup_external")
 
