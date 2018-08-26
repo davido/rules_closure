@@ -19,9 +19,9 @@ java_test(
     size = "small",
     srcs = glob(["*.java"]),
     deps = [
+        "//java/io/bazel/rules/closure/common",
         "//java/io/bazel/rules/closure/worker",
         "//java/io/bazel/rules/closure/worker:worker_protocol_java_proto",
-        "@com_google_code_findbugs_jsr305",
         "@com_google_dagger",
         "@com_google_guava",
         "@com_google_jimfs",

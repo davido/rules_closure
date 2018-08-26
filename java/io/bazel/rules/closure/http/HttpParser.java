@@ -14,10 +14,10 @@
 
 package io.bazel.rules.closure.http;
 
+import io.bazel.rules.closure.common.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import javax.annotation.Nullable;
 
 /** Ultimo HTTP message parser. */
 public final class HttpParser {

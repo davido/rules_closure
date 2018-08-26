@@ -24,11 +24,11 @@ java_library(
     deps = [
         ":build_info_java_proto",
         ":listing",
+        "//java/io/bazel/rules/closure/common",
         "//java/io/bazel/rules/closure:webpath",
         "//java/io/bazel/rules/closure/http",
         "//java/io/bazel/rules/closure/http/filter",
         "//java/io/bazel/rules/closure/webfiles:build_info_java_proto",
-        "@com_google_code_findbugs_jsr305",
         "@com_google_dagger",
         "@com_google_guava",
         "@com_google_protobuf//:protobuf_java",

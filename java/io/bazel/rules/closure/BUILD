@@ -51,7 +51,7 @@ java_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_google_code_findbugs_jsr305",
+        "//java/io/bazel/rules/closure/common",
         "@com_google_guava",
         "@javax_inject",
     ],

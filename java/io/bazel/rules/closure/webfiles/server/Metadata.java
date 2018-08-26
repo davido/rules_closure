@@ -29,6 +29,7 @@ import com.google.protobuf.TextFormat;
 import dagger.Module;
 import dagger.Provides;
 import io.bazel.rules.closure.Webpath;
+import io.bazel.rules.closure.common.Nullable;
 import io.bazel.rules.closure.webfiles.BuildInfo.Webfiles;
 import io.bazel.rules.closure.webfiles.BuildInfo.WebfilesSource;
 import io.bazel.rules.closure.webfiles.server.Annotations.Args;
@@ -59,7 +60,6 @@ import java.util.TreeMap;
 import java.util.concurrent.Executor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 import javax.inject.Inject;
 

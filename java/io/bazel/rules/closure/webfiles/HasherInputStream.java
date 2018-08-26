@@ -15,9 +15,9 @@
 package io.bazel.rules.closure.webfiles;
 
 import com.google.common.hash.Hasher;
+import io.bazel.rules.closure.common.WillCloseWhenClosed;
 import java.io.IOException;
 import java.io.InputStream;
-import javax.annotation.WillCloseWhenClosed;
 
 /** Input stream wrapper that computes a webfile digest token. */
 final class HasherInputStream extends InputStream {

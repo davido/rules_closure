@@ -20,6 +20,11 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Verify.verify;
 
 import com.google.common.base.VerifyException;
+
+import io.bazel.rules.closure.common.CheckReturnValue;
+import io.bazel.rules.closure.common.Nullable;
+import io.bazel.rules.closure.common.WillCloseWhenClosed;
+import io.bazel.rules.closure.common.WillNotClose;
 import io.bazel.rules.closure.webfiles.BuildInfo.WebfileInfo;
 import java.io.Closeable;
 import java.io.FilterInputStream;
@@ -29,10 +34,6 @@ import java.nio.channels.SeekableByteChannel;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipError;
 import java.util.zip.ZipInputStream;
-import javax.annotation.CheckReturnValue;
-import javax.annotation.Nullable;
-import javax.annotation.WillCloseWhenClosed;
-import javax.annotation.WillNotClose;
 
 /**
  * Utility for reading zip files containing web files.

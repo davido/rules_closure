@@ -19,10 +19,10 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
+import io.bazel.rules.closure.common.Nullable;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nullable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

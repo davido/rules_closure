@@ -23,6 +23,8 @@ import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 import com.google.common.io.ByteStreams;
 import com.google.protobuf.ByteString;
+import io.bazel.rules.closure.common.WillCloseWhenClosed;
+import io.bazel.rules.closure.common.WillNotClose;
 import io.bazel.rules.closure.webfiles.BuildInfo.WebfileInfo;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -41,8 +43,6 @@ import java.util.Set;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import javax.annotation.WillCloseWhenClosed;
-import javax.annotation.WillNotClose;
 
 /**
  * Utility for creating a single deterministic zip file containing a set of web files.
