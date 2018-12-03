@@ -676,12 +676,13 @@ def com_google_jsinterop_annotations():
 
 def com_google_protobuf():
     # Note: Protobuf 3.6.0+ is going to use C++11
+    # Commit: Nov 29, 2018
     http_archive(
         name = "com_google_protobuf",
-        strip_prefix = "protobuf-7b28271a61a3da0a37f6fda399b0c4c86464e5b3",
-        sha256 = "9dac7d7cf6e2c88bf92915f9338a26950531c00c05bf86764ab978344b69a45a",
+        strip_prefix = "protobuf-74fa874537d8baa2fbff29a3ab71754995f6b0b7",
+        sha256 = "3a8570cb308e16140c398a17fd98ffd56793e1a599c1b9b9bf82e5a8e9eb307f",
         urls = [
-            "https://github.com/google/protobuf/archive/7b28271a61a3da0a37f6fda399b0c4c86464e5b3.tar.gz",
+            "https://github.com/google/protobuf/archive/74fa874537d8baa2fbff29a3ab71754995f6b0b7.tar.gz",
         ],
     )
 
