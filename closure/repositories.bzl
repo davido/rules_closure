@@ -70,7 +70,7 @@ def closure_repositories(
         omit_phantomjs = False):
     """Imports dependencies for Closure Rules."""
     if omit_com_google_protobuf_java:
-        fail("omit_com_google_protobuf_java no longer supported and must be not be passed to closure_repositories()")
+        fail("omit_com_google_protobuf_java no longer supported and must not be passed to closure_repositories()")
     if not omit_aopalliance:
         aopalliance()
     if not omit_args4j:
@@ -676,23 +676,23 @@ def com_google_jsinterop_annotations():
 def com_google_protobuf():
     http_archive(
         name = "com_google_protobuf",
-        strip_prefix = "protobuf-3.6.1.3",
-        sha256 = "73fdad358857e120fd0fa19e071a96e15c0f23bb25f85d3f7009abfd4f264a2a",
+        strip_prefix = "protobuf-3.7.0",
+        sha256 = "a19dcfe9d156ae45d209b15e0faed5c7b5f109b6117bfc1974b6a7b98a850320",
         urls = [
-            "https://mirror.bazel.build/github.com/google/protobuf/archive/v3.6.1.3.tar.gz",
-            "https://github.com/protocolbuffers/protobuf/archive/v3.6.1.3.tar.gz",
+            "https://mirror.bazel.build/github.com/google/protobuf/archive/v3.7.0.tar.gz",
+            "https://github.com/protocolbuffers/protobuf/archive/v3.7.0.tar.gz",
         ],
     )
 
 def com_google_protobuf_js():
     http_archive(
         name = "com_google_protobuf_js",
-        strip_prefix = "protobuf-3.6.1.3/js",
+        strip_prefix = "protobuf-3.7.0/js",
         urls = [
-            "https://mirror.bazel.build/github.com/google/protobuf/archive/v3.6.1.3.tar.gz",
-            "https://github.com/protocolbuffers/protobuf/archive/v3.6.1.3.tar.gz",
+            "https://mirror.bazel.build/github.com/google/protobuf/archive/v3.7.0.tar.gz",
+            "https://github.com/protocolbuffers/protobuf/archive/v3.7.0.tar.gz",
         ],
-        sha256 = "73fdad358857e120fd0fa19e071a96e15c0f23bb25f85d3f7009abfd4f264a2a",
+        sha256 = "a19dcfe9d156ae45d209b15e0faed5c7b5f109b6117bfc1974b6a7b98a850320",
         build_file = str(Label("//closure/protobuf:protobuf_js.BUILD")),
     )
 
