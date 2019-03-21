@@ -92,7 +92,10 @@ def _closure_proto_aspect_impl(target, ctx):
     deps += [ctx.attr._closure_library, ctx.attr._closure_protobuf_jspb]
 
     suppress = [
+        "checkVars",
         "missingProperties",
+        "missingSourcesWarnings",
+        "undefinedVars",
         "unusedLocalVariables",
     ]
 
