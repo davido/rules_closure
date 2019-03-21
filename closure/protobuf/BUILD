@@ -23,7 +23,7 @@ closure_js_library(
     srcs = ["@com_google_protobuf_js//:proto_js_library_files"],
     suppress = [
         "analyzerChecks",
-	"extraRequire",
+        "extraRequire",
         "lintChecks",
         "reportUnknownTypes",
         "strictCheckTypes",
