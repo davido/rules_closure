@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@rules_java//java:defs.bzl", "java_library")
+
 package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])  # Apache 2.0
 
-load("//closure:defs.bzl", "closure_js_library")
-load("//closure:defs.bzl", "closure_js_proto_library")
+load("//closure:defs.bzl", "closure_js_library", "closure_js_proto_library")
 
 java_library(
     name = "templates",
