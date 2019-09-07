@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+
 """Utilities for building JavaScript Protocol Buffers.
 """
 
