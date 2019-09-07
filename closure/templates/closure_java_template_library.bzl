@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@rules_java//java:defs.bzl", "java_library")
+
 """Utilities for compiling Closure Templates to Java.
 """
 
@@ -77,7 +79,7 @@ def closure_java_template_library(
 
     # Now, wrap them in a Java library, and expose the Soy files as resources.
     java_srcs = outs + extra_outs
-    native.java_library(
+    java_library(
         name = name,
         srcs = java_srcs or None,
         exports = [str(Label(_SOY_LIBRARY))],
