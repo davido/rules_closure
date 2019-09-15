@@ -18,7 +18,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file"
 load("//closure/private:java_import_external.bzl", "java_import_external")
 load("//closure/private:platform_http_file.bzl", "platform_http_file")
 
-def closure_repositories(
+def closure_rules_dependencies(
         omit_aopalliance = False,
         omit_args4j = False,
         omit_bazel_skylib = False,

@@ -82,9 +82,9 @@ http_archive(
     ],
 )
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
+load("@io_bazel_rules_closure//closure:deps.bzl", "closure_rules_repositories")
 
-closure_repositories()
+closure_rules_repositories()
 ```
 
 You are not required to install the Closure Tools, PhantomJS, or anything else
@@ -92,23 +92,23 @@ for that matter; they will be fetched automatically by Bazel.
 
 ### Overriding Dependency Versions
 
-When you call `closure_repositories()` in your `WORKSPACE` file, it causes a
+When you call `closure_rules_repositories()` in your `WORKSPACE` file, it causes a
 few dozen external dependencies to be added to your project, e.g. Guava, Guice,
 JSR305, etc. You might need to customize this behavior.
 
 To override the version of any dependency, modify your `WORKSPACE` file to pass
-`omit_<dependency_name>=True` to `closure_repositories()`. Next define your
+`omit_<dependency_name>=True` to `closure_rules_repositories()`. Next define your
 custom dependency version. A full list of dependencies is available from
 [repositories.bzl]. For example, to override the version of Guava:
 
 ```python
 load(
-    "@io_bazel_rules_closure//closure:defs.bzl",
-    "closure_repositories",
+    "@io_bazel_rules_closure//closure:deps.bzl",
+    "closure_rules_repositories",
     "java_import_external",
 )
 
-closure_repositories(
+closure_rules_repositories(
     omit_com_google_guava=True,
 )
 
@@ -1000,5 +1000,5 @@ This rule can be referenced as though it were the following:
 [proto_library]: https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library
 [protobuf-generator]: https://github.com/google/protobuf/blob/master/src/google/protobuf/compiler/js/js_generator.h
 [protobuf-js]: https://github.com/google/protobuf/tree/master/js
-[repositories.bzl]: https://github.com/bazelbuild/rules_closure/tree/master/closure/repositories.bzl
+[repositories.bzl]: https://github.com/bazelbuild/rules_closure/tree/master/closure/private/repositories.bzl
 [verbose]: https://github.com/google/closure-library/blob/master/closure/goog/html/safehtml.js

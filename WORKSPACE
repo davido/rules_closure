@@ -2,9 +2,9 @@ workspace(name = "io_bazel_rules_closure")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("//closure/private:java_import_external.bzl", "java_import_external")
-load("//closure:repositories.bzl", "closure_repositories")
+load("//closure:deps.bzl", "closure_rules_dependencies")
 
-closure_repositories()
+closure_rules_dependencies()
 
 http_archive(
     name = "zlib",

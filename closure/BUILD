@@ -17,27 +17,6 @@ licenses(["notice"])  # Apache 2.0
 load("//closure/private:lines_sorted_test.bzl", "lines_sorted_test")
 
 lines_sorted_test(
-    name = "repositories_defs_sorted_test",
-    cmd = "sed '1,/BEGIN_DECLARATIONS/ d' $< | grep ^def >$@",
-    error_message = "The functions in repositories.bzl must be sorted",
-    file = "repositories.bzl",
-)
-
-lines_sorted_test(
-    name = "repositories_params_sorted_test",
-    cmd = "grep -e '^ *omit' $< | grep -o 'omit_[_0-9a-z]*' >$@",
-    error_message = "The parameter list in repositories.bzl must be sorted",
-    file = "repositories.bzl",
-)
-
-lines_sorted_test(
-    name = "repositories_calls_sorted_test",
-    cmd = "grep -e '^ *if not omit' $< | grep -o 'omit_[_0-9a-z]*' >$@",
-    error_message = "The param call list in repositories.bzl must be sorted",
-    file = "repositories.bzl",
-)
-
-lines_sorted_test(
     name = "defs_loads_sorted_test",
     cmd = "grep -e '^load' $< >$@",
     error_message = "The load list in defs.bzl must be sorted",
