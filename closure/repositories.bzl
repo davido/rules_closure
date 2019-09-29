@@ -738,23 +738,23 @@ def com_google_jsinterop_annotations():
 def com_google_protobuf():
     http_archive(
         name = "com_google_protobuf",
-        strip_prefix = "protobuf-3.10.0-rc1",
-        sha256 = "690ea9b2ebaa788fbf2cf3353bba2e75bd99e16b09f5e69fdb664f679e5bc584",
+        strip_prefix = "protobuf-protobuf-3.10.0-rc10",
+        sha256 = "a73b361d016e127fed9169e08b4dde24d5954b94715f2fd1091c49fe76b57fbe",
         urls = [
             #            "https://mirror.bazel.build/github.com/google/protobuf/archive/v3.10.0-rc1.tar.gz",
-            "https://github.com/protocolbuffers/protobuf/archive/v3.10.0-rc1.tar.gz",
+            "https://github.com/davido/protobuf/archive/protobuf-3.10.0-rc10.tar.gz",
         ],
     )
 
 def com_google_protobuf_js():
     http_archive(
         name = "com_google_protobuf_js",
-        strip_prefix = "protobuf-3.10.0-rc1/js",
+        strip_prefix = "protobuf-protobuf-3.10.0-rc10/js",
         urls = [
             #            "https://mirror.bazel.build/github.com/google/protobuf/archive/v3.10.0-rc1.tar.gz",
-            "https://github.com/protocolbuffers/protobuf/archive/v3.10.0-rc1.tar.gz",
+            "https://github.com/davido/protobuf/archive/protobuf-3.10.0-rc10.tar.gz",
         ],
-        sha256 = "690ea9b2ebaa788fbf2cf3353bba2e75bd99e16b09f5e69fdb664f679e5bc584",
+        sha256 = "a73b361d016e127fed9169e08b4dde24d5954b94715f2fd1091c49fe76b57fbe",
         build_file = str(Label("//closure/protobuf:protobuf_js.BUILD")),
     )
 
