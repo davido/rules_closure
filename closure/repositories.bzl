@@ -61,6 +61,7 @@ def rules_closure_dependencies(
         omit_com_squareup_javapoet = False,
         omit_fonts_noto_hinted_deb = False,
         omit_fonts_noto_mono_deb = False,
+        omit_javax_annotation_api = False,
         omit_javax_annotation_jsr250_api = False,
         omit_javax_inject = False,
         omit_libexpat_amd64_deb = False,
@@ -151,6 +152,8 @@ def rules_closure_dependencies(
         fonts_noto_hinted_deb()
     if not omit_fonts_noto_mono_deb:
         fonts_noto_mono_deb()
+    if not omit_javax_annotation_api:
+        javax_annotation_api()
     if not omit_javax_annotation_jsr250_api:
         javax_annotation_jsr250_api()
     if not omit_javax_inject:
@@ -836,6 +839,16 @@ def fonts_noto_mono_deb():
             "http://http.us.debian.org/debian/pool/main/f/fonts-noto/fonts-noto-mono_20161116-1_all.deb",
         ],
         sha256 = "71ff715cf50a74a8cc11b02e7c906b69a242d3d677e739e0b2d18cd23b7de375",
+    )
+
+def javax_annotation_api():
+    java_import_external(
+        name = "javax_annotation_api",
+        licenses = ["reciprocal"],
+        jar_sha256 = "e04ba5195bcd555dc95650f7cc614d151e4bcd52d29a10b8aa2197f3ab89ab9b",
+        jar_urls = [
+            "https://repo1.maven.org/maven2/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar",
+        ],
     )
 
 def javax_annotation_jsr250_api():

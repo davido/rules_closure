@@ -44,6 +44,7 @@ java_library(
     deps = [
         "@com_google_auto_value",
         "@com_google_guava",
+        "@javax_annotation_api",
     ],
 )
 
